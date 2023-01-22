@@ -2,7 +2,8 @@ from pathlib import Path
 from pytube import YouTube
 from tkinter import *
 from tkinter import filedialog
-
+import threading
+import time
 root = Tk()
 root.title("YouTube Video Downloader")
 root.geometry("1000x400")
@@ -17,19 +18,20 @@ label1.pack()
 entry_url = Entry(root, width=50)
 entry_url.pack()
 
-def save_file(file):
-    file = filedialog.askdirectory()
-
-def download(file):
+def download():
+    time.sleep(1)
+    label_downloading = Label(text="Processing...")
+    label_downloading.pack()
     a = str(entry_url.get())
     youtube_video = YouTube(a)
     youtube_video = youtube_video.streams.get_highest_resolution()
-    # downloads_path = str(Path.home() / "Downloads")
-    downloads_path = save_file(file)
-    path = str(downloads_path)
-    youtube_video.download(downloads_path)
-    label_progress = Label(root,text="Video Downloaded \n Check Your Download Folder")
+    file = filedialog.askdirectory()
+    youtube_video.download(file)
+    label_downloading.destroy()
+    label_progress = Label(root,text="Video Downloaded Check Folder")
     label_progress.pack()
+    label_path = Label(root,text=file)
+    label_path.pack()
     title = youtube_video.title
     label_title = Label(text=title)
     label_title.pack()
@@ -38,10 +40,8 @@ def clear():
     entry_url.delete(0, END)
 
 
-button = Button(text="Download",command=download)
+button = Button(text="Download",command=threading.Thread(target=download).start)
 button.pack() 
 button_clear = Button(text="Clear",command=clear)
 button_clear.pack() 
-button_file = Button(text="Save",command=save_file)
-button_file.pack() 
 root.mainloop()
