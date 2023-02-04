@@ -59,16 +59,21 @@ def audio_download():
     label_title_audio = Label(text=display_title)
     label_title_audio.pack()
 
-
-
 def clear():
     entry_url.delete(0, END)
-    label_progress.pack_forget()
-    label_title.pack_forget()
-    label_path.pack_forget()
-    label_title_audio.pack_forget()
-    label_path_audio.pack_forget()
-    label_progress_audio.pack_forget()
+    try:
+        label_progress.pack_forget()
+        label_title.pack_forget()
+        label_path.pack_forget()
+    except:
+        pass
+    try:
+        label_title_audio.pack_forget()
+        label_path_audio.pack_forget()
+        label_progress_audio.pack_forget()
+    except:
+        pass
+
 
 button = Button(text="Download",command=threading.Thread(target=download).start)
 button.pack() 
