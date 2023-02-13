@@ -2,8 +2,7 @@
 
 An Application made using Python which downloads Youtube Videos and saves it locally on your device.
 
-- Modules/Library used in this applications are pytube, tkinter and many more.
-
+- Modules/Library used in this application are pytube, tkinter and many more.
 
 You can check the official documentation of these modules
 
