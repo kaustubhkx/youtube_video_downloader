@@ -7,7 +7,7 @@ import time
 root = Tk()
 root.title("YouTube Video Downloader")
 root.geometry("1000x400")
-root.iconphoto(True, PhotoImage(file="images/downloading.png"))
+#root.iconphoto(True, PhotoImage(file="images/downloading.png"))
 
 Header = Label(root, text="YouTube Video Downloader", font='Ariel')
 Header.pack()
@@ -105,9 +105,6 @@ def start_audio_download():
 audio_download_button = Button(text="Download Audio Only",command=start_audio_download)
 audio_download_button.pack() 
 
-
-# button = Button(text="Download",command=threading.Thread(target=download).start)
-# audio_download_button = Button(text="Download Audio Only",command=threading.Thread(target=audio_download).start)
 button_clear = Button(text="Clear",command=clear)
 button_clear.pack() 
 root.mainloop()
